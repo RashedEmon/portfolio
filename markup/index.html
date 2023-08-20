@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheet/style.css">
+    <title>Rashedul</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="header">
+            <div class="header_wrapper">
+                <div class="header_parent">
+                    <div class="logo">
+                        Rashed                   
+                    </div>
+                    <div class="collapsible_menu">
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <main class="main">
+            <div class="intro_section">
+                <div class="avatar" id="avatar">
+                    <div class="image_wrapper">
+                        <div class="image_container">
+                            <img src="../resource/avatar.jpg" alt="avatar" width="200px" height="200px">
+                        </div>
+                    </div>
+                </div>
+                <div class="first_half" id="first_half">
+
+                </div>
+                <div class="second_half">
+                    
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        update = (e)=>{
+            let avatar = document.getElementById('avatar')
+            avatarRect = avatar.getClientRects()[0]
+            let first_half = document.getElementById('first_half')
+            first_half_rect = first_half.getClientRects()[0]
+            avatar.style.top = `${(first_half_rect.height/2)-(avatarRect.height/2)+10}px`
+            avatar.style.left = `${first_half_rect.right-((avatarRect.width)/2)+10}px`
+        }
+        update()
+        window.addEventListener("resize", update);
+    </script>
+</body>
+</html>
