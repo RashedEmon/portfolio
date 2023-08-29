@@ -14,40 +14,93 @@
                     <div class="logo">
                         Rashed                   
                     </div>
-                    <div class="collapsible_menu">
+                    <div class="collapsible_menu" id="collapsible_menu">
+                        <div class="menu_container" id="menu_container">
+                            <div class="cross_button_container">
+                                <div class="cross_button" id="cross_button"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </nav>
         <main class="main">
-            <div class="intro_section">
-                <div class="avatar" id="avatar">
-                    <div class="image_wrapper">
-                        <div class="image_container">
-                            <img src="../resource/avatar.jpg" alt="avatar" width="200px" height="200px">
-                        </div>
-                    </div>
-                </div>
+            <div class="intro_section sec">
+                
                 <div class="first_half" id="first_half">
 
                 </div>
                 <div class="second_half">
-                    
+                    <div class="avatar" id="avatar">
+                        <div class="image_wrapper">
+                            <div class="image_container">
+                                <img src="../resource/avatar.jpg" alt="avatar" width="200px" height="200px">
+                            </div>
+                        </div>
+                    </div>    
                 </div>
+            </div>
+            <div class="biography sec">
+
+            </div>
+            <div class="projects sec">
+
             </div>
         </main>
     </div>
     <script>
-        update = (e)=>{
-            let avatar = document.getElementById('avatar')
-            avatarRect = avatar.getClientRects()[0]
-            let first_half = document.getElementById('first_half')
-            first_half_rect = first_half.getClientRects()[0]
-            avatar.style.top = `${(first_half_rect.height/2)-(avatarRect.height/2)+10}px`
-            avatar.style.left = `${first_half_rect.right-((avatarRect.width)/2)+10}px`
-        }
-        update()
-        window.addEventListener("resize", update);
+            window.onbeforeunload = function(){
+                document.querySelector('.intro_section.sec').scrollIntoView()
+            }
+          
+            sections = document.getElementsByClassName("sec")
+            current_index = 0
+            let last_index = sections.length-1
+             
+            
+            update = (e)=>{
+                if(window.innerWidth<=600){
+                    return
+                }
+                let avatar = document.getElementById('avatar')
+                avatarRect = avatar.getClientRects()[0]
+                let first_half = document.getElementById('first_half')
+                first_half_rect = first_half.getClientRects()[0]
+                avatar.style.top = `${(first_half_rect.height/2)-(avatarRect.height/2)+10}px`
+                avatar.style.left = `${first_half_rect.right-((avatarRect.width)/2)+10}px`
+            }
+            update()
+            window.addEventListener("resize", update);
+            nav_cross_button = document.getElementById('cross_button')
+            nav_collapsible_button = document.getElementById('collapsible_menu')
+            nav_menu_container = document.getElementById('menu_container')
+
+
+            nav_cross_button.addEventListener("click", (e)=>{
+                event.stopPropagation()
+                nav_menu_container.classList.remove('active')
+            })
+            nav_collapsible_button.addEventListener("click", (e)=>{
+                nav_menu_container.classList.add('active')
+            })
+            document.addEventListener("wheel", (e)=>{
+                if(e.deltaY > 0){
+                    if(current_index===last_index){
+                        return
+                    }
+                    elm = sections[current_index+1] 
+                    elm.scrollIntoView()
+                    current_index+=1
+                }else{
+                    if(current_index==0){
+                        return
+                    }
+                    elm = sections[current_index-1] 
+                    elm.scrollIntoView()
+                    current_index-=1
+                }
+            })
+        
     </script>
 </body>
 </html>
