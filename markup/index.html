@@ -11,7 +11,7 @@
         <nav class="header">
             <div class="header_wrapper">
                 <div class="header_parent">
-                    <div class="logo">
+                    <div class="logo" style="color: #ccf381">
                         Rashed                   
                     </div>
                     <div class="collapsible_menu" id="collapsible_menu">
@@ -26,7 +26,17 @@
         </nav>
         <main class="main">
             <div class="intro_section sec">
-                
+                <div class="intro_middle">
+                    <div class="intro_middle_row">
+                        <div>
+                            <p style="font-size: 70px; margin: 10px 0; width: 200px; color: #ccf381">Software Engineer.</p>
+                            <p style="font-size: 25px; color: #ffffff; width: 600px; margin-top: 30px">Turning Imagination into Reality, One Line of Code at a Time</p>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
                 <div class="first_half" id="first_half">
 
                 </div>
@@ -34,7 +44,7 @@
                     <div class="avatar" id="avatar">
                         <div class="image_wrapper">
                             <div class="image_container">
-                                <img src="../resource/avatar.jpg" alt="avatar" width="200px" height="200px">
+                                <img src="../resource/avatar.jpeg" alt="avatar" width="200px" height="200px">
                             </div>
                         </div>
                     </div>    
@@ -46,61 +56,32 @@
             <div class="projects sec">
 
             </div>
+            <div class="contact sec">
+                <div class="contact_container">
+                    <h1>Send me a message!</h1>
+                    <h3>Got a question or proposal, or just want
+                        to say hello? Go ahead.</h3>
+                    <div class="name_email">
+                        <div class="visitor_name">
+                            <p>Your Name</p>
+                            <input type="text">
+                        </div>
+                        <div class="visitor_email">
+                            <p>Email Address</p>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="message">
+                        <p>Message</p>
+                        <textarea>Write something here...</textarea>
+                    </div>
+                    <div class="shoot">
+                        <div>Shoot</div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
-    <script>
-            window.onbeforeunload = function(){
-                document.querySelector('.intro_section.sec').scrollIntoView()
-            }
-          
-            sections = document.getElementsByClassName("sec")
-            current_index = 0
-            let last_index = sections.length-1
-             
-            
-            update = (e)=>{
-                if(window.innerWidth<=600){
-                    return
-                }
-                let avatar = document.getElementById('avatar')
-                avatarRect = avatar.getClientRects()[0]
-                let first_half = document.getElementById('first_half')
-                first_half_rect = first_half.getClientRects()[0]
-                avatar.style.top = `${(first_half_rect.height/2)-(avatarRect.height/2)+10}px`
-                avatar.style.left = `${first_half_rect.right-((avatarRect.width)/2)+10}px`
-            }
-            update()
-            window.addEventListener("resize", update);
-            nav_cross_button = document.getElementById('cross_button')
-            nav_collapsible_button = document.getElementById('collapsible_menu')
-            nav_menu_container = document.getElementById('menu_container')
-
-
-            nav_cross_button.addEventListener("click", (e)=>{
-                event.stopPropagation()
-                nav_menu_container.classList.remove('active')
-            })
-            nav_collapsible_button.addEventListener("click", (e)=>{
-                nav_menu_container.classList.add('active')
-            })
-            document.addEventListener("wheel", (e)=>{
-                if(e.deltaY > 0){
-                    if(current_index===last_index){
-                        return
-                    }
-                    elm = sections[current_index+1] 
-                    elm.scrollIntoView()
-                    current_index+=1
-                }else{
-                    if(current_index==0){
-                        return
-                    }
-                    elm = sections[current_index-1] 
-                    elm.scrollIntoView()
-                    current_index-=1
-                }
-            })
-        
-    </script>
+    <script src="../behaviour/index.js"></script>
 </body>
 </html>
